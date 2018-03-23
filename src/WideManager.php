@@ -20,7 +20,7 @@ class WideManager {
 	public function api($local, $parametros = array()) {
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, 'http://' . $this->dominio . '/' . trim($local, '/'));
+		curl_setopt($curl, CURLOPT_URL, 'http://' . $this->dominio . '/api/' . trim($local, '/'));
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json')); 
 		curl_setopt($curl, CURLOPT_USERPWD, $this->autenticacao['email'] . ':' . $this->autenticacao['token']);
