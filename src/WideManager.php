@@ -3,17 +3,14 @@
 class WideManager {
 
 	private $dominio = null;
-	private $autenticacao = array();
+	private $token = null;
 
 	public $requisicoes = array();
 
-	public function __construct($dominio, $email, $token) {
+	public function __construct($dominio, $token) {
 
 		$this->dominio = $dominio;
-		$this->autenticacao = array(
-			'email' => $email,
-			'token' => $token
-		);
+		$this->token = $token;
 
 	}
 
@@ -26,11 +23,11 @@ class WideManager {
 				'error' => 'É necessário informar o domínio para efetuar a comunicação.'
 			);
 
-		} else if (!$this->autenticacao['email'] || !$this->autenticacao['token']) {
+		} else if (!$this->token) {
 
 			$requisicao = array(
 				'success' => false,
-				'error' => 'É necessário informar o e-mail e o token para efetuar a autenticação.'
+				'error' => 'É necessário informar o token para efetuar a autenticação.'
 			);
 
 		} else {
@@ -38,8 +35,10 @@ class WideManager {
 			$curl = curl_init();
 			curl_setopt($curl, CURLOPT_URL, 'http://' . $this->dominio . '/api/' . trim($local, '/'));
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json')); 
-			curl_setopt($curl, CURLOPT_USERPWD, $this->autenticacao['email'] . ':' . $this->autenticacao['token']);
+			curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+				'Accept: application/json',
+				'Authorization: Bearer ' . $this->token
+			)); 
 			curl_setopt($curl, CURLOPT_POST, true);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($parametros));
 			curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
