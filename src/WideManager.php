@@ -19,15 +19,15 @@ class WideManager {
 		if (!$this->dominio) {
 
 			$requisicao = array(
-				'success' => false,
-				'error' => 'É necessário informar o domínio para efetuar a comunicação.'
+				'sucesso' => false,
+				'erro' => 'É necessário informar o domínio para efetuar a comunicação.'
 			);
 
 		} else if (!$this->token) {
 
 			$requisicao = array(
-				'success' => false,
-				'error' => 'É necessário informar o token para efetuar a autenticação.'
+				'sucesso' => false,
+				'erro' => 'É necessário informar o token para efetuar a autenticação.'
 			);
 
 		} else {
@@ -52,17 +52,21 @@ class WideManager {
 				if (!is_array($requisicao)) {
 
 					$requisicao = array(
-						'success' => false,
-						'error' => 'Não foi possível tratar o retorno.'
+						'sucesso' => false,
+						'erro' => 'Não foi possível tratar o retorno.',
 					);
+
+					if ($exec) {
+						$requisicao['retorno'] = $exec;
+					}
 
 				}
 
 			} else {
 
 				$requisicao = array(
-					'success' => false,
-					'error' => 'Sem comunicação com o servidor.'
+					'sucesso' => false,
+					'erro' => 'Sem comunicação com o servidor.'
 				);
 
 			}
