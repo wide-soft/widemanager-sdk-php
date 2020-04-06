@@ -34,7 +34,7 @@ class WideManager {
             }
 
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'http://' . $this->dominio . '/api/' . trim($local, '/'));
+            curl_setopt($curl, CURLOPT_URL, 'https://' . $this->dominio . '/api/' . trim($local, '/'));
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HTTPHEADER, $header); 
             curl_setopt($curl, CURLOPT_POST, true);

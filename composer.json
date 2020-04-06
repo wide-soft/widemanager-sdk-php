@@ -1,8 +1,8 @@
 {
     "name": "wide-soft/widemanager-sdk-php",
     "description": "Biblioteca de integração com o Wide Manger",
-    "homepage": "http://www.widesoft.net",
-    "version": "1.0.3",
+    "homepage": "https://www.widesoft.net",
+    "version": "1.0.4",
     "type": "library",
     "license": "MIT",
     "authors": [
