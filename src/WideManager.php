@@ -33,8 +33,10 @@ class WideManager {
                 $header[] = 'Authorization: Bearer ' . $this->token;
             }
 
+            $local = trim($local, '/');
+
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'https://' . $this->dominio . '/api/' . trim($local, '/'));
+            curl_setopt($curl, CURLOPT_URL, ((substr($this->dominio, 0, 4) == 'http') ? '' : 'https://') . $this->dominio . '/' . ((substr($local, 0, 3) == 'api') ? '' : 'api/') . $local);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HTTPHEADER, $header); 
             curl_setopt($curl, CURLOPT_POST, true);
